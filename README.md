@@ -1,0 +1,2 @@
+# powccoreaudio
+PythonからWindowsのCoreAudio COM機能を使いやすくするパッケージ集です。comtypesパッケージ、powcパッケージに依存します。 
