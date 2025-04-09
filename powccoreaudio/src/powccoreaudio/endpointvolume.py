@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from typing import Any
 
 from comtypes import GUID, STDMETHOD, IUnknown
-
 from powc.core import ComResult, cr, queryinterface
 
 

@@ -16,14 +16,14 @@ from typing import (
 
 from comtypes import CLSCTX_ALL, GUID, STDMETHOD, CoCreateInstance, COMObject, IUnknown
 from comtypes.hresult import S_OK
-
 from powc.core import ComResult, check_hresult, cotaskmem, cr, queryinterface
 from powc.stream import StorageMode
-from powccoreaudio.endpointvolume import AudioEndpointVolume, IAudioEndpointVolume
-from powcdeviceprop.devicepropsinstore import DevicePropertiesReadOnlyInPropertyStore
 from powcpropsys.propkey import PropertyKey
 from powcpropsys.propstore import IPropertyStore, PropertyStore
 from powcpropsys.propvariant import PropVariant
+
+from powccoreaudio.endpointvolume import AudioEndpointVolume, IAudioEndpointVolume
+from powcdeviceprop.devicepropsinstore import DevicePropertiesReadOnlyInPropertyStore
 
 
 class DataFlow(IntEnum):
@@ -429,6 +429,12 @@ class MMDeviceEnumerator:
 
     def get_default_audioendpoint(self, flow: DataFlow, role: Role) -> MMDevice:
         return self.get_default_audioendpoint_nothrow(flow, role).value
+
+    def get_speaker(self) -> MMDevice:
+        return self.get_default_audioendpoint(DataFlow.Render, Role.Multimedia)
+
+    def get_microphone(self) -> MMDevice:
+        return self.get_default_audioendpoint(DataFlow.Capture, Role.Multimedia)
 
     def get_device_nothrow(self, id: str) -> ComResult[MMDevice]:
         p = POINTER(IMMDevice)()
