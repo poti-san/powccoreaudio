@@ -16,14 +16,13 @@ from typing import (
 
 from comtypes import CLSCTX_ALL, GUID, STDMETHOD, CoCreateInstance, COMObject, IUnknown
 from comtypes.hresult import S_OK
-from powc.core import ComResult, check_hresult, cotaskmem, cr, queryinterface
+from powc.core import ComResult, check_hresult, cotaskmem, cr, query_interface
 from powc.stream import StorageMode
+from powccoreaudio.endpointvolume import AudioEndpointVolume, IAudioEndpointVolume
+from powcdeviceprop.devicepropsinstore import DevicePropertiesReadOnlyInPropertyStore
 from powcpropsys.propkey import PropertyKey
 from powcpropsys.propstore import IPropertyStore, PropertyStore
 from powcpropsys.propvariant import PropVariant
-
-from powccoreaudio.endpointvolume import AudioEndpointVolume, IAudioEndpointVolume
-from powcdeviceprop.devicepropsinstore import DevicePropertiesReadOnlyInPropertyStore
 
 
 class DataFlow(IntEnum):
@@ -70,7 +69,7 @@ class MMDevice:
     __slots__ = ("__o",)
 
     def __init__(self, o: Any) -> None:
-        self.__o = queryinterface(o, IMMDevice)
+        self.__o = query_interface(o, IMMDevice)
 
     @property
     def wrapped_obj(self) -> c_void_p:
@@ -173,7 +172,7 @@ class MMDeviceCollection:
     __slots__ = ("__o",)
 
     def __init__(self, o: Any) -> None:
-        self.__o = queryinterface(o, IMMDeviceCollection)
+        self.__o = query_interface(o, IMMDeviceCollection)
 
     @property
     def wrapped_obj(self) -> c_void_p:
@@ -242,7 +241,7 @@ class MMEndpoint:
     __slots__ = ("__o",)
 
     def __init__(self, o: Any) -> None:
-        self.__o = queryinterface(o, IMMEndpoint)
+        self.__o = query_interface(o, IMMEndpoint)
 
     @property
     def wrapped_obj(self) -> c_void_p:
@@ -398,7 +397,7 @@ class MMDeviceEnumerator:
     __slots__ = ("__o",)
 
     def __init__(self, o: Any) -> None:
-        self.__o = queryinterface(o, IMMDeviceEnumerator)
+        self.__o = query_interface(o, IMMDeviceEnumerator)
 
     @property
     def wrapped_obj(self) -> c_void_p:

@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from comtypes import GUID, STDMETHOD, IUnknown
-from powc.core import ComResult, cr, queryinterface
+from powc.core import ComResult, cr, query_interface
 
 
 class IAudioEndpointVolume(IUnknown):
@@ -43,7 +43,7 @@ class AudioEndpointVolume:
     __slots__ = ("__o", "__eventcontext_guid")
 
     def __init__(self, o: Any, eventcontext_guid: GUID | None = None) -> None:
-        self.__o = queryinterface(o, IAudioEndpointVolume)
+        self.__o = query_interface(o, IAudioEndpointVolume)
         self.__eventcontext_guid = eventcontext_guid
 
     @property
