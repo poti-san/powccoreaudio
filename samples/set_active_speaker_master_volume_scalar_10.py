@@ -1,7 +1,7 @@
 # アクティブなスピーカーのマスター音量を10%に設定する。
 
 from powccoreaudio.mmdevice import MMDeviceEnumerator
-from powcdeviceprop.devicepropsinstore import DevicePropertiesReadOnlyInPropertyStore
+from powccoreaudio.devicepropsinstore import DevicePropertiesReadOnlyInPropertyStore
 
 enumerator = MMDeviceEnumerator.create()
 audio_device = enumerator.get_speaker()

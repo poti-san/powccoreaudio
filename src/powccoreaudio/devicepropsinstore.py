@@ -1,7 +1,8 @@
 from powc.core import ComResult, cr
 from powcpropsys.propstore import PropertyStore
+from powdeviceinfo.devprop import DevicePropertyKeys
 
-from .devicepropkey import DevicePropertyKeys
+from ._util import _devpkey_to_pkey
 
 
 class DevicePropertiesReadOnlyInPropertyStore:
@@ -18,7 +19,7 @@ class DevicePropertiesReadOnlyInPropertyStore:
 
     @property
     def device_desc_nothrow(self) -> ComResult[str]:
-        ret = self.__store.get_value_nothrow(DevicePropertyKeys.DEVICE_DESC)
+        ret = self.__store.get_value_nothrow(_devpkey_to_pkey(DevicePropertyKeys.DEVICE_DESC))
         return cr(ret.hr, ret.value_unchecked.to_str()) if ret else cr(ret.hr, "")
 
     @property
@@ -49,7 +50,7 @@ class DevicePropertiesReadOnlyInPropertyStore:
 
     @property
     def manufacturer_nothrow(self) -> ComResult[str]:
-        ret = self.__store.get_value_nothrow(DevicePropertyKeys.MANUFACTURER)
+        ret = self.__store.get_value_nothrow(_devpkey_to_pkey(DevicePropertyKeys.MANUFACTURER))
         return cr(ret.hr, ret.value_unchecked.to_str()) if ret else cr(ret.hr, "")
 
     @property
@@ -58,7 +59,7 @@ class DevicePropertiesReadOnlyInPropertyStore:
 
     @property
     def friendlyname_nothrow(self) -> ComResult[str]:
-        ret = self.__store.get_value_nothrow(DevicePropertyKeys.FRIENDLY_NAME)
+        ret = self.__store.get_value_nothrow(_devpkey_to_pkey(DevicePropertyKeys.FRIENDLY_NAME))
         return cr(ret.hr, ret.value_unchecked.to_str()) if ret else cr(ret.hr, "")
 
     @property

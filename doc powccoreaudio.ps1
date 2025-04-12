@@ -1,1 +1,1 @@
-powccoreaudio\docs\build\html\index.html
+src\powccoreaudio\docs\build\html\index.html
