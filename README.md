@@ -4,8 +4,6 @@ PythonからWindowsのCoreAudio COM機能を使いやすくするパッケージ
 **マスター音量を10%に設定する**
 
 ```python
-# アクティブなスピーカーのマスター音量を10%に設定する。
-
 from powccoreaudio.mmdevice import MMDeviceEnumerator
 from powccoreaudio.devicepropsinstore import DevicePropertiesReadOnlyInPropertyStore
 
@@ -23,8 +21,6 @@ print(f"{props.friendlyname}: {audio.master_volume_level_scalar * 100:.2f}%")
 **全スピーカーのミュート**
 
 ```python
-"""全スピーカーのミュート"""
-
 from powccoreaudio.mmdevice import MMDeviceEnumerator
 
 device_enum = MMDeviceEnumerator.create()
