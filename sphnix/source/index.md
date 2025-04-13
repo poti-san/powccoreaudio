@@ -1,10 +1,12 @@
 # powccoreaudioドキュメント
 
-PythonからWindowsのCoreAudio APIを使いやすくするためのパッケージです。
-
 ```{toctree}
 ---
-maxdepth: 3
+hidden:
 ---
 apiref/powccoreaudio
+genindex
+modindex
 ```
+
+PythonからWindowsのCoreAudio APIを使いやすくするためのパッケージです。
