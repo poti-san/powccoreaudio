@@ -28,7 +28,3 @@ for device in device_enum.speakers:
     volume_ctrl = device.activate_audioendpointvolume()
     volume_ctrl.mute = True
 ```
-
-## 謝辞
-
-このパッケージはcomtypesパッケージに依存しています。comtypesパッケージの作成者や貢献者の方々の多大な努力に感謝します。

@@ -1,5 +1,14 @@
 from abc import abstractmethod
-from ctypes import POINTER, _Pointer, byref, c_int32, c_uint32, c_void_p, c_wchar_p
+from ctypes import (
+    POINTER,
+    Structure,
+    _Pointer,
+    byref,
+    c_int32,
+    c_uint32,
+    c_void_p,
+    c_wchar_p,
+)
 from enum import IntEnum, IntFlag
 from inspect import signature as inspect_sig
 from typing import (
@@ -16,13 +25,23 @@ from typing import (
 
 from comtypes import CLSCTX_ALL, GUID, STDMETHOD, CoCreateInstance, COMObject, IUnknown
 from comtypes.hresult import S_OK
-from powc.core import ComResult, check_hresult, cotaskmem, cr, query_interface
+from powc.core import (
+    ComResult,
+    IUnknownWrapper,
+    check_hresult,
+    cotaskmem,
+    cr,
+    query_interface,
+)
 from powc.stream import StorageMode
-from powccoreaudio.endpointvolume import AudioEndpointVolume, IAudioEndpointVolume
-from powccoreaudio.devicepropsinstore import DevicePropertiesReadOnlyInPropertyStore
 from powcpropsys.propkey import PropertyKey
 from powcpropsys.propstore import IPropertyStore, PropertyStore
 from powcpropsys.propvariant import PropVariant
+
+from powccoreaudio.devicepropsinstore import DevicePropertiesReadOnlyInPropertyStore
+from powccoreaudio.endpointvolume import AudioEndpointVolume, IAudioEndpointVolume
+
+from .endpointvolume import AudioMeterInformation, IAudioMeterInformation
 
 
 class DataFlow(IntEnum):
@@ -75,20 +94,17 @@ class MMDevice:
     def wrapped_obj(self) -> c_void_p:
         return self.__o
 
-    if TYPE_CHECKING:
+    def activate_nothrow[TWrapper: IUnknownWrapper](
+        self, iid: GUID, wrapper_type: type[TWrapper], params: PropVariant | None = None, clsctx: int = CLSCTX_ALL
+    ) -> ComResult[TWrapper]:
 
-        def activate_nothrow[TIUnknown: IUnknown](
-            self, interface_type: type[TIUnknown], params: PropVariant | None = None, clsctx: int = CLSCTX_ALL
-        ) -> ComResult[_Pointer[TIUnknown]]: ...
+        p = POINTER(IUnknown)()
+        return cr(self.__o.Activate(byref(iid), clsctx, params, byref(p)), wrapper_type(p))
 
-    else:
-
-        def activate_nothrow[TIUnknown: IUnknown](
-            self, interface_type: type[TIUnknown], params: PropVariant | None = None, clsctx: int = CLSCTX_ALL
-        ):
-
-            p = POINTER(interface_type)()
-            return cr(self.__o.Activate(byref(interface_type._iid_), clsctx, params, byref(p)), p)
+    def activate[TWrapper: IUnknownWrapper](
+        self, iid: GUID, wrapper_type: type[TWrapper], params: PropVariant | None = None, clsctx: int = CLSCTX_ALL
+    ) -> TWrapper:
+        return self.activate_nothrow(iid, wrapper_type, params, clsctx).value
 
     def open_propstore_nothrow(self, access: StorageMode) -> ComResult[PropertyStore]:
         p = POINTER(IPropertyStore)()
@@ -136,11 +152,25 @@ class MMDevice:
     #
 
     def activate_audioendpointvolume_nothrow(self) -> ComResult[AudioEndpointVolume]:
-        ret = self.activate_nothrow(IAudioEndpointVolume)
-        return cr(ret.hr, AudioEndpointVolume(ret.value_unchecked))
+        return self.activate_nothrow(IAudioEndpointVolume._iid_, AudioEndpointVolume)
 
     def activate_audioendpointvolume(self) -> AudioEndpointVolume:
         return self.activate_audioendpointvolume_nothrow().value
+
+    def activate_audiosystemeffectspropstore_nothrow(
+        self, propstore_context: GUID
+    ) -> "ComResult[AudioSystemEffectsPropertyStore]":
+        pv = PropVariant.init_clsid(propstore_context)
+        return self.activate_nothrow(IAudioSystemEffectsPropertyStore._iid_, AudioSystemEffectsPropertyStore, pv)
+
+    def activate_audiosystemeffectspropstore(self, propstore_context: GUID) -> "AudioSystemEffectsPropertyStore":
+        return self.activate_audiosystemeffectspropstore_nothrow(propstore_context).value
+
+    def activate_audiometerinfo_nothrow(self) -> "ComResult[AudioMeterInformation]":
+        return self.activate_nothrow(IAudioMeterInformation._iid_, AudioMeterInformation)
+
+    def activate_audiometerinfo(self) -> "AudioMeterInformation":
+        return self.activate_audiometerinfo_nothrow().value
 
     @property
     def device_props_readonly_nothrow(self) -> ComResult[DevicePropertiesReadOnlyInPropertyStore]:
@@ -460,3 +490,241 @@ class MMDeviceEnumerator:
 
     def unregister_endpoint_notification_callback(self, wrapper: MMNotificationClientWrapper) -> None:
         return self.unregister_endpoint_notification_callback_nothrow(wrapper).value
+
+
+# TODO クラス分け
+PKEY_AudioEndpoint_FormFactor = PropertyKey.from_define(
+    0x1DA5D803, 0xD492, 0x4EDD, 0x8C, 0x23, 0xE0, 0xC0, 0xFF, 0xEE, 0x7F, 0x0E, 0
+)
+PKEY_AudioEndpoint_ControlPanelPageProvider = PropertyKey.from_define(
+    0x1DA5D803, 0xD492, 0x4EDD, 0x8C, 0x23, 0xE0, 0xC0, 0xFF, 0xEE, 0x7F, 0x0E, 1
+)
+PKEY_AudioEndpoint_Association = PropertyKey.from_define(
+    0x1DA5D803, 0xD492, 0x4EDD, 0x8C, 0x23, 0xE0, 0xC0, 0xFF, 0xEE, 0x7F, 0x0E, 2
+)
+PKEY_AudioEndpoint_PhysicalSpeakers = PropertyKey.from_define(
+    0x1DA5D803, 0xD492, 0x4EDD, 0x8C, 0x23, 0xE0, 0xC0, 0xFF, 0xEE, 0x7F, 0x0E, 3
+)
+PKEY_AudioEndpoint_GUID = PropertyKey.from_define(
+    0x1DA5D803, 0xD492, 0x4EDD, 0x8C, 0x23, 0xE0, 0xC0, 0xFF, 0xEE, 0x7F, 0x0E, 4
+)
+PKEY_AudioEndpoint_Disable_SysFx = PropertyKey.from_define(
+    0x1DA5D803, 0xD492, 0x4EDD, 0x8C, 0x23, 0xE0, 0xC0, 0xFF, 0xEE, 0x7F, 0x0E, 5
+)
+ENDPOINT_SYSFX_ENABLED = 0x00000000
+ENDPOINT_SYSFX_DISABLED = 0x00000001
+PKEY_AudioEndpoint_FullRangeSpeakers = PropertyKey.from_define(
+    0x1DA5D803, 0xD492, 0x4EDD, 0x8C, 0x23, 0xE0, 0xC0, 0xFF, 0xEE, 0x7F, 0x0E, 6
+)
+PKEY_AudioEndpoint_Supports_EventDriven_Mode = PropertyKey.from_define(
+    0x1DA5D803, 0xD492, 0x4EDD, 0x8C, 0x23, 0xE0, 0xC0, 0xFF, 0xEE, 0x7F, 0x0E, 7
+)
+PKEY_AudioEndpoint_JackSubType = PropertyKey.from_define(
+    0x1DA5D803, 0xD492, 0x4EDD, 0x8C, 0x23, 0xE0, 0xC0, 0xFF, 0xEE, 0x7F, 0x0E, 8
+)
+PKEY_AudioEndpoint_Default_VolumeInDb = PropertyKey.from_define(
+    0x1DA5D803, 0xD492, 0x4EDD, 0x8C, 0x23, 0xE0, 0xC0, 0xFF, 0xEE, 0x7F, 0x0E, 9
+)
+PKEY_AudioEngine_DeviceFormat = PropertyKey.from_define(
+    0xF19F064D, 0x82C, 0x4E27, 0xBC, 0x73, 0x68, 0x82, 0xA1, 0xBB, 0x8E, 0x4C, 0
+)
+PKEY_AudioEngine_OEMFormat = PropertyKey.from_define(
+    0xE4870E26, 0x3CC5, 0x4CD2, 0xBA, 0x46, 0xCA, 0xA, 0x9A, 0x70, 0xED, 0x4, 3
+)
+PKEY_AudioEndpointLogo_IconEffects = PropertyKey.from_define(
+    0xF1AB780D, 0x2010, 0x4ED3, 0xA3, 0xA6, 0x8B, 0x87, 0xF0, 0xF0, 0xC4, 0x76, 0
+)
+PKEY_AudioEndpointLogo_IconPath = PropertyKey.from_define(
+    0xF1AB780D, 0x2010, 0x4ED3, 0xA3, 0xA6, 0x8B, 0x87, 0xF0, 0xF0, 0xC4, 0x76, 1
+)
+PKEY_AudioEndpointSettings_MenuText = PropertyKey.from_define(
+    0x14242002, 0x0320, 0x4DE4, 0x95, 0x55, 0xA7, 0xD8, 0x2B, 0x73, 0xC2, 0x86, 0
+)
+PKEY_AudioEndpointSettings_LaunchContract = PropertyKey.from_define(
+    0x14242002, 0x0320, 0x4DE4, 0x95, 0x55, 0xA7, 0xD8, 0x2B, 0x73, 0xC2, 0x86, 1
+)
+
+
+class DirectXAudioActivationParams(Structure):
+    """DIRECTX_AUDIO_ACTIVATION_PARAMS"""
+
+    __slots__ = ()
+    _fields_ = (
+        ("directx_audio_activation_params", c_uint32),
+        ("audio_session_guid", GUID),
+        ("audio_stream_flags", c_uint32),
+    )
+
+
+class EndpointFormFactor(IntEnum):
+    RemoteNetworkDevice = 0
+    Speakers = 1
+    LineLevel = 2
+    Headphones = 3
+    Microphone = 4
+    Headset = 5
+    Handset = 6
+    UnknownDigitalPassthrough = 7
+    SPDIF = 8
+    DigitalAudioDisplayDevice = 9
+    UnknownFormFactor = 10
+
+
+class IMMDeviceActivator(IUnknown):
+    __slots__ = ()
+    _iid_ = GUID("{3B0D0EA4-D0A9-4B0E-935B-09516746FAC0}")
+    _methods_ = [
+        STDMETHOD(
+            c_int32, "Activate", (POINTER(GUID), POINTER(IMMDevice), POINTER(PropVariant), POINTER(POINTER(IUnknown)))
+        ),
+    ]
+
+
+class IActivateAudioInterfaceAsyncOperation(IUnknown):
+    __slots__ = ()
+    _iid_ = GUID("{72A22D78-CDE4-431D-B8CC-843A71199B6D}")
+    _methods_ = [
+        STDMETHOD(c_int32, "GetActivateResult", (POINTER(c_int32), POINTER(POINTER(IUnknown)))),
+    ]
+
+
+class IActivateAudioInterfaceCompletionHandler(IUnknown):
+    __slots__ = ()
+    _iid_ = GUID("{41D949AB-9862-444A-80F6-C261334DA5EB}")
+    _methods_ = [
+        STDMETHOD(c_int32, "ActivateCompleted", (POINTER(IActivateAudioInterfaceAsyncOperation),)),
+    ]
+
+
+# STDAPI ActivateAudioInterfaceAsync(
+#     _In_ LPCWSTR deviceInterfacePath,
+#     _In_ REFIID riid,
+#     _In_opt_ PROPVARIANT *activationParams,
+#     _In_ IActivateAudioInterfaceCompletionHandler *completionHandler,
+#     _COM_Outptr_ IActivateAudioInterfaceAsyncOperation **activationOperation
+#     );
+
+
+class AudioExtensionParams(Structure):
+    __slots__ = ()
+    _fields_ = (
+        ("add_page_param", c_void_p),
+        ("endppoint_p", POINTER(IMMDevice)),
+        ("pnp_interface_p", POINTER(IMMDevice)),
+        ("pnp_devnode_p", POINTER(IMMDevice)),
+    )
+
+
+class AudioSystemEffectsPropStoreType(IntEnum):
+    """AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE"""
+
+    DEFAULT = 0
+    USER = 1
+    VOLATILE = 2
+
+
+class IAudioSystemEffectsPropertyChangeNotificationClient(IUnknown):
+    __slots__ = ()
+    _iid_ = GUID("{20049D40-56D5-400E-A2EF-385599FEED49}")
+    _methods_ = [
+        STDMETHOD(c_int32, "OnPropertyChanged", (c_int32, PropertyKey)),
+    ]
+
+
+class IAudioSystemEffectsPropertyStore(IUnknown):
+    __slots__ = ()
+    _iid_ = GUID("{302AE7F9-D7E0-43E4-971B-1F8293613D2A}")
+    _methods_ = [
+        STDMETHOD(c_int32, "OpenDefaultPropertyStore", (c_int32, POINTER(POINTER(IPropertyStore)))),
+        STDMETHOD(c_int32, "OpenUserPropertyStore", (c_int32, POINTER(POINTER(IPropertyStore)))),
+        STDMETHOD(c_int32, "OpenVolatilePropertyStore", (c_uint32, POINTER(POINTER(IPropertyStore)))),
+        STDMETHOD(c_int32, "ResetUserPropertyStore", ()),
+        STDMETHOD(c_int32, "ResetVolatilePropertyStore", ()),
+        STDMETHOD(
+            c_int32,
+            "RegisterPropertyChangeNotification",
+            (POINTER(IAudioSystemEffectsPropertyChangeNotificationClient),),
+        ),
+        STDMETHOD(
+            c_int32,
+            "UnregisterPropertyChangeNotification",
+            (POINTER(IAudioSystemEffectsPropertyChangeNotificationClient),),
+        ),
+    ]
+
+
+class AudioSystemEffectsPropertyStore:
+    """聴覚システム効果プロパティストア。IAudioSystemEffectsPropertyStoreインターフェイスのラッパーです。
+
+    作成にはMMDeviceを使用します。"""
+
+    __o: Any  # POINTER(IAudioSystemEffectsPropertyStore)
+
+    __slots__ = ("__o",)
+
+    def __init__(self, o: Any) -> None:
+        self.__o = query_interface(o, IAudioSystemEffectsPropertyStore)
+
+    @property
+    def wrapped_obj(self) -> c_void_p:
+        return self.__o
+
+    def open_defaultpropstore_nothrow(self, stg: StorageMode) -> ComResult[PropertyStore]:
+        x = POINTER(IPropertyStore)()
+        return cr(self.__o.OpenDefaultPropertyStore(int(stg)), PropertyStore(x))
+
+    def open_defaultpropstore(self, stg: StorageMode) -> PropertyStore:
+        return self.open_defaultpropstore_nothrow(stg).value
+
+    def open_userpropstore_nothrow(self, stg: StorageMode) -> ComResult[PropertyStore]:
+        x = POINTER(IPropertyStore)()
+        return cr(self.__o.OpenUserPropertyStore(int(stg)), PropertyStore(x))
+
+    def open_userpropstore(self, stg: StorageMode) -> PropertyStore:
+        return self.open_userpropstore_nothrow(stg).value
+
+    def open_volatilepropstore_nothrow(self, stg: StorageMode) -> ComResult[PropertyStore]:
+        x = POINTER(IPropertyStore)()
+        return cr(self.__o.OpenVolatilePropertyStore(int(stg)), PropertyStore(x))
+
+    def open_volatilepropstore(self, stg: StorageMode) -> PropertyStore:
+        return self.open_volatilepropstore_nothrow(stg).value
+
+    def reset_userpropstore_nothrow(self) -> ComResult[None]:
+        return cr(self.__o.ResetUserPropertyStore(), None)
+
+    def reset_userpropstore(self) -> None:
+        return self.reset_userpropstore_nothrow().value
+
+    def reset_volatilepropstore_nothrow(self) -> ComResult[None]:
+        return cr(self.__o.ResetVolatilePropertyStore(), None)
+
+    def reset_volatilepropstore(self) -> None:
+        return self.reset_volatilepropstore_nothrow().value
+
+    if TYPE_CHECKING:
+        IAudioSystemEffectsPropertyChangeNotificationClientType = _Pointer[
+            IAudioSystemEffectsPropertyChangeNotificationClient
+        ]
+    else:
+        IAudioSystemEffectsPropertyChangeNotificationClientType = POINTER(
+            IAudioSystemEffectsPropertyChangeNotificationClient
+        )
+
+    def register_propchangenotification_nothrow(
+        self, client: IAudioSystemEffectsPropertyChangeNotificationClientType
+    ) -> ComResult[None]:
+        return cr(self.__o.RegisterPropertyChangeNotification(client), None)
+
+    def register_propchangenotification(self, client: IAudioSystemEffectsPropertyChangeNotificationClientType) -> None:
+        return self.register_propchangenotification_nothrow(client).value
+
+    def unregister_propchangenotification_nothrow(
+        self, client: IAudioSystemEffectsPropertyChangeNotificationClientType
+    ) -> ComResult[None]:
+        return cr(self.__o.UnregisterPropertyChangeNotification(client), None)
+
+    def unregister_propchangenotification(
+        self, client: IAudioSystemEffectsPropertyChangeNotificationClientType
+    ) -> None:
+        return self.unregister_propchangenotification_nothrow(client).value

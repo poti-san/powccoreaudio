@@ -1,5 +1,6 @@
-from ctypes import POINTER, byref, c_float, c_int32, c_uint32, c_void_p
+from ctypes import POINTER, Structure, byref, c_float, c_int32, c_uint32, c_void_p
 from dataclasses import dataclass
+from enum import IntFlag
 from typing import Any
 
 from comtypes import GUID, STDMETHOD, IUnknown
@@ -34,13 +35,60 @@ class IAudioEndpointVolume(IUnknown):
     __slots__ = ()
 
 
+class AudioVolumeNotificationData(Structure):
+    """AUDIO_VOLUME_NOTIFICATION_DATA"""
+
+    __slots__ = ()
+    _fields_ = (
+        ("event_context_guid", GUID),
+        ("muted", c_int32),
+        ("master_volume", c_float),
+        ("channels", c_uint32),
+        ("channel_volumes0", c_float),
+    )
+
+
+class ENDPOINT_HARDWARE_SUPPORT(IntFlag):
+    """ENDPOINT_HARDWARE_SUPPORT_*定数"""
+
+    VOLUME = 0x00000001
+    MUTE = 0x00000002
+    METER = 0x00000004
+
+
+class IAudioEndpointVolumeCallback(IUnknown):
+    __slots__ = ()
+    _iid_ = GUID("{657804FA-D6AD-4496-8A60-352752AF4F89}")
+    _methods_ = [
+        STDMETHOD(c_int32, "OnNotify", (POINTER(AudioVolumeNotificationData),)),
+    ]
+
+
+class IAudioEndpointVolumeEx(IAudioEndpointVolume):
+    __slots__ = ()
+    _iid_ = GUID("{66E11784-F695-4F28-A505-A7080081A78F}")
+    _methods_ = [
+        STDMETHOD(c_int32, "GetVolumeRangeChannel", (c_uint32, POINTER(c_float), POINTER(c_float), POINTER(c_float))),
+    ]
+
+
+class IAudioMeterInformation(IUnknown):
+    __slots__ = ()
+    _iid_ = GUID("{C02216F6-8C67-4B5B-9D00-D008E73E0064}")
+    _methods_ = [
+        STDMETHOD(c_int32, "GetPeakValue", (POINTER(c_float),)),
+        STDMETHOD(c_int32, "GetMeteringChannelCount", (POINTER(c_uint32),)),
+        STDMETHOD(c_int32, "GetChannelsPeakValues", (c_uint32, POINTER(c_float))),
+        STDMETHOD(c_int32, "QueryHardwareSupport", (POINTER(c_uint32),)),
+    ]
+
+
 class AudioEndpointVolume:
     """オーディオエンドポイント。IAudioEndpointVolumeインターフェイスのラッパーです。"""
 
+    __slots__ = ("__o", "__eventcontext_guid")
     __o: Any  # POINTER(IAudioEndpointVolume)
     __eventcontext_guid: GUID | None
-
-    __slots__ = ("__o", "__eventcontext_guid")
 
     def __init__(self, o: Any, eventcontext_guid: GUID | None = None) -> None:
         self.__o = query_interface(o, IAudioEndpointVolume)
@@ -199,3 +247,59 @@ class AudioEndpointVolume:
     @property
     def volume_range(self) -> VolumeRange:
         return self.volume_range_nothrow.value
+
+
+class AudioMeterInformation:
+    """聴覚メーター情報。IAudioMeterInformationインターフェイスのラッパーです。
+
+    作成にはMMDeviceを使用します。"""
+
+    __o: Any  # POINTER(IAudioMeterInformation)
+
+    __slots__ = ("__o",)
+
+    def __init__(self, o: Any) -> None:
+        self.__o = query_interface(o, IAudioMeterInformation)
+
+    @property
+    def wrapped_obj(self) -> c_void_p:
+        return self.__o
+
+    @property
+    def peakvalue_nothrow(self) -> ComResult[float]:
+        x = c_float()
+        return cr(self.__o.GetPeakValue(byref(x)), x.value)
+
+    @property
+    def peakvalue(self) -> float:
+        return self.peakvalue_nothrow.value
+
+    @property
+    def meteringchannelcount_nothrow(self) -> ComResult[int]:
+        x = c_uint32()
+        return cr(self.__o.GetMeteringChannelCount(byref(x)), x.value)
+
+    @property
+    def meteringchannelcount(self) -> int:
+        return self.meteringchannelcount_nothrow.value
+
+    @property
+    def channelspeakvalues_nothrow(self) -> ComResult[tuple[float]]:
+        c = self.meteringchannelcount_nothrow
+        if not c:
+            return cr(c.hr, tuple())
+        x = (c_float * c.value_unchecked)()
+        return cr(self.__o.GetChannelsPeakValues(c.value_unchecked, x), tuple(x))
+
+    @property
+    def channelspeakvalues(self) -> tuple[float]:
+        return self.channelspeakvalues_nothrow.value
+
+    @property
+    def hardwaresupport_nothrow(self) -> ComResult[ENDPOINT_HARDWARE_SUPPORT]:
+        x = c_uint32()
+        return cr(self.__o.QueryHardwareSupport(byref(x)), ENDPOINT_HARDWARE_SUPPORT(x.value))
+
+    @property
+    def hardwaresupport(self) -> ENDPOINT_HARDWARE_SUPPORT:
+        return self.hardwaresupport_nothrow.value
