@@ -1,0 +1,991 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>powccoreaudio.mmdevice module &mdash; powccoreaudio  ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=c033477b"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=4755f45a"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="prev" title="powccoreaudio.endpointvolume module" href="powccoreaudio.endpointvolume.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            powccoreaudio
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="powccoreaudio.html">powccoreaudio package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="powccoreaudio.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="powccoreaudio.devicepropsinstore.html">powccoreaudio.devicepropsinstore module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="powccoreaudio.endpointvolume.html">powccoreaudio.endpointvolume module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">powccoreaudio.mmdevice module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.AudioExtensionParams"><code class="docutils literal notranslate"><span class="pre">AudioExtensionParams</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropStoreType"><code class="docutils literal notranslate"><span class="pre">AudioSystemEffectsPropStoreType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore"><code class="docutils literal notranslate"><span class="pre">AudioSystemEffectsPropertyStore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.DataFlow"><code class="docutils literal notranslate"><span class="pre">DataFlow</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.DeviceState"><code class="docutils literal notranslate"><span class="pre">DeviceState</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.DirectXAudioActivationParams"><code class="docutils literal notranslate"><span class="pre">DirectXAudioActivationParams</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.EndpointFormFactor"><code class="docutils literal notranslate"><span class="pre">EndpointFormFactor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.IActivateAudioInterfaceAsyncOperation"><code class="docutils literal notranslate"><span class="pre">IActivateAudioInterfaceAsyncOperation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.IActivateAudioInterfaceCompletionHandler"><code class="docutils literal notranslate"><span class="pre">IActivateAudioInterfaceCompletionHandler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyChangeNotificationClient"><code class="docutils literal notranslate"><span class="pre">IAudioSystemEffectsPropertyChangeNotificationClient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore"><code class="docutils literal notranslate"><span class="pre">IAudioSystemEffectsPropertyStore</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.IMMDevice"><code class="docutils literal notranslate"><span class="pre">IMMDevice</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.IMMDeviceActivator"><code class="docutils literal notranslate"><span class="pre">IMMDeviceActivator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.IMMDeviceCollection"><code class="docutils literal notranslate"><span class="pre">IMMDeviceCollection</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.IMMDeviceEnumerator"><code class="docutils literal notranslate"><span class="pre">IMMDeviceEnumerator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.IMMEndpoint"><code class="docutils literal notranslate"><span class="pre">IMMEndpoint</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.IMMNotificationClient"><code class="docutils literal notranslate"><span class="pre">IMMNotificationClient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.MMDevice"><code class="docutils literal notranslate"><span class="pre">MMDevice</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.MMDeviceCollection"><code class="docutils literal notranslate"><span class="pre">MMDeviceCollection</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.MMDeviceEnumerator"><code class="docutils literal notranslate"><span class="pre">MMDeviceEnumerator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.MMEndpoint"><code class="docutils literal notranslate"><span class="pre">MMEndpoint</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.MMNotificationClientBase"><code class="docutils literal notranslate"><span class="pre">MMNotificationClientBase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.MMNotificationClientForCall"><code class="docutils literal notranslate"><span class="pre">MMNotificationClientForCall</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.MMNotificationClientForPrint"><code class="docutils literal notranslate"><span class="pre">MMNotificationClientForPrint</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.MMNotificationClientWrapper"><code class="docutils literal notranslate"><span class="pre">MMNotificationClientWrapper</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.mmdevice.Role"><code class="docutils literal notranslate"><span class="pre">Role</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">索引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">モジュール索引</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">powccoreaudio</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="powccoreaudio.html">powccoreaudio package</a></li>
+      <li class="breadcrumb-item active">powccoreaudio.mmdevice module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/apiref/powccoreaudio.mmdevice.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-powccoreaudio.mmdevice">
+<span id="powccoreaudio-mmdevice-module"></span><h1>powccoreaudio.mmdevice module<a class="headerlink" href="#module-powccoreaudio.mmdevice" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioExtensionParams">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">AudioExtensionParams</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioExtensionParams" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioExtensionParams.add_page_param">
+<span class="sig-name descname"><span class="pre">add_page_param</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioExtensionParams.add_page_param" title="Link to this definition"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioExtensionParams.endppoint_p">
+<span class="sig-name descname"><span class="pre">endppoint_p</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioExtensionParams.endppoint_p" title="Link to this definition"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioExtensionParams.pnp_devnode_p">
+<span class="sig-name descname"><span class="pre">pnp_devnode_p</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioExtensionParams.pnp_devnode_p" title="Link to this definition"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioExtensionParams.pnp_interface_p">
+<span class="sig-name descname"><span class="pre">pnp_interface_p</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioExtensionParams.pnp_interface_p" title="Link to this definition"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropStoreType">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">AudioSystemEffectsPropStoreType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropStoreType" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropStoreType.DEFAULT">
+<span class="sig-name descname"><span class="pre">DEFAULT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropStoreType.DEFAULT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropStoreType.USER">
+<span class="sig-name descname"><span class="pre">USER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropStoreType.USER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropStoreType.VOLATILE">
+<span class="sig-name descname"><span class="pre">VOLATILE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropStoreType.VOLATILE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">AudioSystemEffectsPropertyStore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">o</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>聴覚システム効果プロパティストア。IAudioSystemEffectsPropertyStoreインターフェイスのラッパーです。</p>
+<p>作成にはMMDeviceを使用します。</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.IAudioSystemEffectsPropertyChangeNotificationClientType">
+<span class="sig-name descname"><span class="pre">IAudioSystemEffectsPropertyChangeNotificationClientType</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.IAudioSystemEffectsPropertyChangeNotificationClientType" title="Link to this definition"></a></dt>
+<dd><p>:py:class:<a href="#id1"><span class="problematic" id="id2">`</span></a>~comtypes._post_coinit.unknwn.POINTER(IAudioSystemEffectsPropertyChangeNotificationClient)`の別名です。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.open_defaultpropstore">
+<span class="sig-name descname"><span class="pre">open_defaultpropstore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StorageMode</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PropertyStore</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.open_defaultpropstore" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.open_defaultpropstore_nothrow">
+<span class="sig-name descname"><span class="pre">open_defaultpropstore_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StorageMode</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">PropertyStore</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.open_defaultpropstore_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.open_userpropstore">
+<span class="sig-name descname"><span class="pre">open_userpropstore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StorageMode</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PropertyStore</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.open_userpropstore" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.open_userpropstore_nothrow">
+<span class="sig-name descname"><span class="pre">open_userpropstore_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StorageMode</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">PropertyStore</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.open_userpropstore_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.open_volatilepropstore">
+<span class="sig-name descname"><span class="pre">open_volatilepropstore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StorageMode</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PropertyStore</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.open_volatilepropstore" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.open_volatilepropstore_nothrow">
+<span class="sig-name descname"><span class="pre">open_volatilepropstore_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StorageMode</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">PropertyStore</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.open_volatilepropstore_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.register_propchangenotification">
+<span class="sig-name descname"><span class="pre">register_propchangenotification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">POINTER</span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyChangeNotificationClient" title="powccoreaudio.mmdevice.IAudioSystemEffectsPropertyChangeNotificationClient"><span class="pre">IAudioSystemEffectsPropertyChangeNotificationClient</span></a><span class="p"><span class="pre">)</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.register_propchangenotification" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.register_propchangenotification_nothrow">
+<span class="sig-name descname"><span class="pre">register_propchangenotification_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">POINTER</span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyChangeNotificationClient" title="powccoreaudio.mmdevice.IAudioSystemEffectsPropertyChangeNotificationClient"><span class="pre">IAudioSystemEffectsPropertyChangeNotificationClient</span></a><span class="p"><span class="pre">)</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.register_propchangenotification_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.reset_userpropstore">
+<span class="sig-name descname"><span class="pre">reset_userpropstore</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.reset_userpropstore" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.reset_userpropstore_nothrow">
+<span class="sig-name descname"><span class="pre">reset_userpropstore_nothrow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.reset_userpropstore_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.reset_volatilepropstore">
+<span class="sig-name descname"><span class="pre">reset_volatilepropstore</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.reset_volatilepropstore" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.reset_volatilepropstore_nothrow">
+<span class="sig-name descname"><span class="pre">reset_volatilepropstore_nothrow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.reset_volatilepropstore_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.unregister_propchangenotification">
+<span class="sig-name descname"><span class="pre">unregister_propchangenotification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">POINTER</span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyChangeNotificationClient" title="powccoreaudio.mmdevice.IAudioSystemEffectsPropertyChangeNotificationClient"><span class="pre">IAudioSystemEffectsPropertyChangeNotificationClient</span></a><span class="p"><span class="pre">)</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.unregister_propchangenotification" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.unregister_propchangenotification_nothrow">
+<span class="sig-name descname"><span class="pre">unregister_propchangenotification_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">POINTER</span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyChangeNotificationClient" title="powccoreaudio.mmdevice.IAudioSystemEffectsPropertyChangeNotificationClient"><span class="pre">IAudioSystemEffectsPropertyChangeNotificationClient</span></a><span class="p"><span class="pre">)</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.unregister_propchangenotification_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.wrapped_obj">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wrapped_obj</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">c_void_p</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore.wrapped_obj" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.DataFlow">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">DataFlow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.mmdevice.DataFlow" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>EDataFlow</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.DataFlow.All">
+<span class="sig-name descname"><span class="pre">All</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.DataFlow.All" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.DataFlow.Capture">
+<span class="sig-name descname"><span class="pre">Capture</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.DataFlow.Capture" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.DataFlow.Render">
+<span class="sig-name descname"><span class="pre">Render</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.DataFlow.Render" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.DeviceState">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">DeviceState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.mmdevice.DeviceState" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntFlag</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.DeviceState.ACTIVE">
+<span class="sig-name descname"><span class="pre">ACTIVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.DeviceState.ACTIVE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.DeviceState.DISABLED">
+<span class="sig-name descname"><span class="pre">DISABLED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.DeviceState.DISABLED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.DeviceState.NOTPRESENT">
+<span class="sig-name descname"><span class="pre">NOTPRESENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.DeviceState.NOTPRESENT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.DeviceState.UNPLUGGED">
+<span class="sig-name descname"><span class="pre">UNPLUGGED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.DeviceState.UNPLUGGED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.DirectXAudioActivationParams">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">DirectXAudioActivationParams</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.DirectXAudioActivationParams" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></p>
+<p>DIRECTX_AUDIO_ACTIVATION_PARAMS</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.DirectXAudioActivationParams.audio_session_guid">
+<span class="sig-name descname"><span class="pre">audio_session_guid</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.DirectXAudioActivationParams.audio_session_guid" title="Link to this definition"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.DirectXAudioActivationParams.audio_stream_flags">
+<span class="sig-name descname"><span class="pre">audio_stream_flags</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.DirectXAudioActivationParams.audio_stream_flags" title="Link to this definition"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.DirectXAudioActivationParams.directx_audio_activation_params">
+<span class="sig-name descname"><span class="pre">directx_audio_activation_params</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.DirectXAudioActivationParams.directx_audio_activation_params" title="Link to this definition"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.EndpointFormFactor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">EndpointFormFactor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.mmdevice.EndpointFormFactor" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.EndpointFormFactor.DigitalAudioDisplayDevice">
+<span class="sig-name descname"><span class="pre">DigitalAudioDisplayDevice</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.EndpointFormFactor.DigitalAudioDisplayDevice" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.EndpointFormFactor.Handset">
+<span class="sig-name descname"><span class="pre">Handset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.EndpointFormFactor.Handset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.EndpointFormFactor.Headphones">
+<span class="sig-name descname"><span class="pre">Headphones</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.EndpointFormFactor.Headphones" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.EndpointFormFactor.Headset">
+<span class="sig-name descname"><span class="pre">Headset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.EndpointFormFactor.Headset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.EndpointFormFactor.LineLevel">
+<span class="sig-name descname"><span class="pre">LineLevel</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.EndpointFormFactor.LineLevel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.EndpointFormFactor.Microphone">
+<span class="sig-name descname"><span class="pre">Microphone</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.EndpointFormFactor.Microphone" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.EndpointFormFactor.RemoteNetworkDevice">
+<span class="sig-name descname"><span class="pre">RemoteNetworkDevice</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.EndpointFormFactor.RemoteNetworkDevice" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.EndpointFormFactor.SPDIF">
+<span class="sig-name descname"><span class="pre">SPDIF</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.EndpointFormFactor.SPDIF" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.EndpointFormFactor.Speakers">
+<span class="sig-name descname"><span class="pre">Speakers</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.EndpointFormFactor.Speakers" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.EndpointFormFactor.UnknownDigitalPassthrough">
+<span class="sig-name descname"><span class="pre">UnknownDigitalPassthrough</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.EndpointFormFactor.UnknownDigitalPassthrough" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.EndpointFormFactor.UnknownFormFactor">
+<span class="sig-name descname"><span class="pre">UnknownFormFactor</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.EndpointFormFactor.UnknownFormFactor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IActivateAudioInterfaceAsyncOperation">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">IActivateAudioInterfaceAsyncOperation</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.IActivateAudioInterfaceAsyncOperation" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IUnknown</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IActivateAudioInterfaceAsyncOperation.GetActivateResult">
+<span class="sig-name descname"><span class="pre">GetActivateResult</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">3:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IActivateAudioInterfaceAsyncOperation.GetActivateResult" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IActivateAudioInterfaceCompletionHandler">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">IActivateAudioInterfaceCompletionHandler</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.IActivateAudioInterfaceCompletionHandler" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IUnknown</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IActivateAudioInterfaceCompletionHandler.ActivateCompleted">
+<span class="sig-name descname"><span class="pre">ActivateCompleted</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">3:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IActivateAudioInterfaceCompletionHandler.ActivateCompleted" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IAudioSystemEffectsPropertyChangeNotificationClient">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">IAudioSystemEffectsPropertyChangeNotificationClient</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyChangeNotificationClient" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IUnknown</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IAudioSystemEffectsPropertyChangeNotificationClient.OnPropertyChanged">
+<span class="sig-name descname"><span class="pre">OnPropertyChanged</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">3:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyChangeNotificationClient.OnPropertyChanged" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">IAudioSystemEffectsPropertyStore</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IUnknown</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore.OpenDefaultPropertyStore">
+<span class="sig-name descname"><span class="pre">OpenDefaultPropertyStore</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">3:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore.OpenDefaultPropertyStore" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore.OpenUserPropertyStore">
+<span class="sig-name descname"><span class="pre">OpenUserPropertyStore</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">4:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore.OpenUserPropertyStore" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore.OpenVolatilePropertyStore">
+<span class="sig-name descname"><span class="pre">OpenVolatilePropertyStore</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">5:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore.OpenVolatilePropertyStore" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore.RegisterPropertyChangeNotification">
+<span class="sig-name descname"><span class="pre">RegisterPropertyChangeNotification</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">8:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore.RegisterPropertyChangeNotification" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore.ResetUserPropertyStore">
+<span class="sig-name descname"><span class="pre">ResetUserPropertyStore</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">6:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore.ResetUserPropertyStore" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore.ResetVolatilePropertyStore">
+<span class="sig-name descname"><span class="pre">ResetVolatilePropertyStore</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">7:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore.ResetVolatilePropertyStore" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore.UnregisterPropertyChangeNotification">
+<span class="sig-name descname"><span class="pre">UnregisterPropertyChangeNotification</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">9:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IAudioSystemEffectsPropertyStore.UnregisterPropertyChangeNotification" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDevice">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">IMMDevice</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDevice" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IUnknown</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDevice.Activate">
+<span class="sig-name descname"><span class="pre">Activate</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">3:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDevice.Activate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDevice.GetId">
+<span class="sig-name descname"><span class="pre">GetId</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">5:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDevice.GetId" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDevice.GetState">
+<span class="sig-name descname"><span class="pre">GetState</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">6:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDevice.GetState" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDevice.OpenPropertyStore">
+<span class="sig-name descname"><span class="pre">OpenPropertyStore</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">4:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDevice.OpenPropertyStore" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDeviceActivator">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">IMMDeviceActivator</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDeviceActivator" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IUnknown</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDeviceActivator.Activate">
+<span class="sig-name descname"><span class="pre">Activate</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">3:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDeviceActivator.Activate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDeviceCollection">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">IMMDeviceCollection</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDeviceCollection" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IUnknown</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDeviceCollection.GetCount">
+<span class="sig-name descname"><span class="pre">GetCount</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">3:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDeviceCollection.GetCount" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDeviceCollection.Item">
+<span class="sig-name descname"><span class="pre">Item</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">4:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDeviceCollection.Item" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDeviceEnumerator">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">IMMDeviceEnumerator</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDeviceEnumerator" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IUnknown</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDeviceEnumerator.EnumAudioEndpoints">
+<span class="sig-name descname"><span class="pre">EnumAudioEndpoints</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">3:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDeviceEnumerator.EnumAudioEndpoints" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDeviceEnumerator.GetDefaultAudioEndpoint">
+<span class="sig-name descname"><span class="pre">GetDefaultAudioEndpoint</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">4:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDeviceEnumerator.GetDefaultAudioEndpoint" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDeviceEnumerator.GetDevice">
+<span class="sig-name descname"><span class="pre">GetDevice</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">5:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDeviceEnumerator.GetDevice" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDeviceEnumerator.RegisterEndpointNotificationCallback">
+<span class="sig-name descname"><span class="pre">RegisterEndpointNotificationCallback</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">6:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDeviceEnumerator.RegisterEndpointNotificationCallback" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMDeviceEnumerator.UnregisterEndpointNotificationCallback">
+<span class="sig-name descname"><span class="pre">UnregisterEndpointNotificationCallback</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">7:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMDeviceEnumerator.UnregisterEndpointNotificationCallback" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMEndpoint">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">IMMEndpoint</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.IMMEndpoint" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IUnknown</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMEndpoint.GetDataFlow">
+<span class="sig-name descname"><span class="pre">GetDataFlow</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">3:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMEndpoint.GetDataFlow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMNotificationClient">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">IMMNotificationClient</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.IMMNotificationClient" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IUnknown</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMNotificationClient.OnDefaultDeviceChanged">
+<span class="sig-name descname"><span class="pre">OnDefaultDeviceChanged</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">6:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMNotificationClient.OnDefaultDeviceChanged" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMNotificationClient.OnDeviceAdded">
+<span class="sig-name descname"><span class="pre">OnDeviceAdded</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">4:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMNotificationClient.OnDeviceAdded" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMNotificationClient.OnDeviceRemoved">
+<span class="sig-name descname"><span class="pre">OnDeviceRemoved</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">5:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMNotificationClient.OnDeviceRemoved" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMNotificationClient.OnDeviceStateChanged">
+<span class="sig-name descname"><span class="pre">OnDeviceStateChanged</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">3:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMNotificationClient.OnDeviceStateChanged" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.IMMNotificationClient.OnPropertyValueChanged">
+<span class="sig-name descname"><span class="pre">OnPropertyValueChanged</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">7:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.IMMNotificationClient.OnPropertyValueChanged" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">MMDevice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">o</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>マルチメディアデバイス。IMMDeviceインターフェイスのラッパーです。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.activate">
+<span class="sig-name descname"><span class="pre">activate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GUID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wrapper_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span><span class="p"><span class="pre">[</span></span><span class="pre">TWrapper</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PropVariant</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clsctx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TWrapper</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.activate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.activate_audioendpointvolume">
+<span class="sig-name descname"><span class="pre">activate_audioendpointvolume</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="powccoreaudio.endpointvolume.html#powccoreaudio.endpointvolume.AudioEndpointVolume" title="powccoreaudio.endpointvolume.AudioEndpointVolume"><span class="pre">AudioEndpointVolume</span></a></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.activate_audioendpointvolume" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.activate_audioendpointvolume_nothrow">
+<span class="sig-name descname"><span class="pre">activate_audioendpointvolume_nothrow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="powccoreaudio.endpointvolume.html#powccoreaudio.endpointvolume.AudioEndpointVolume" title="powccoreaudio.endpointvolume.AudioEndpointVolume"><span class="pre">AudioEndpointVolume</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.activate_audioendpointvolume_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.activate_audiometerinfo">
+<span class="sig-name descname"><span class="pre">activate_audiometerinfo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="powccoreaudio.endpointvolume.html#powccoreaudio.endpointvolume.AudioMeterInformation" title="powccoreaudio.endpointvolume.AudioMeterInformation"><span class="pre">AudioMeterInformation</span></a></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.activate_audiometerinfo" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.activate_audiometerinfo_nothrow">
+<span class="sig-name descname"><span class="pre">activate_audiometerinfo_nothrow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="powccoreaudio.endpointvolume.html#powccoreaudio.endpointvolume.AudioMeterInformation" title="powccoreaudio.endpointvolume.AudioMeterInformation"><span class="pre">AudioMeterInformation</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.activate_audiometerinfo_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.activate_audiosystemeffectspropstore">
+<span class="sig-name descname"><span class="pre">activate_audiosystemeffectspropstore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">propstore_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GUID</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore" title="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore"><span class="pre">AudioSystemEffectsPropertyStore</span></a></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.activate_audiosystemeffectspropstore" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.activate_audiosystemeffectspropstore_nothrow">
+<span class="sig-name descname"><span class="pre">activate_audiosystemeffectspropstore_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">propstore_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GUID</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore" title="powccoreaudio.mmdevice.AudioSystemEffectsPropertyStore"><span class="pre">AudioSystemEffectsPropertyStore</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.activate_audiosystemeffectspropstore_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.activate_nothrow">
+<span class="sig-name descname"><span class="pre">activate_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GUID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wrapper_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span><span class="p"><span class="pre">[</span></span><span class="pre">TWrapper</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PropVariant</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clsctx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.activate_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.device_props_readonly">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">device_props_readonly</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="powccoreaudio.devicepropsinstore.html#powccoreaudio.devicepropsinstore.DevicePropertiesReadOnlyInPropertyStore" title="powccoreaudio.devicepropsinstore.DevicePropertiesReadOnlyInPropertyStore"><span class="pre">DevicePropertiesReadOnlyInPropertyStore</span></a></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.device_props_readonly" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.device_props_readonly_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">device_props_readonly_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="powccoreaudio.devicepropsinstore.html#powccoreaudio.devicepropsinstore.DevicePropertiesReadOnlyInPropertyStore" title="powccoreaudio.devicepropsinstore.DevicePropertiesReadOnlyInPropertyStore"><span class="pre">DevicePropertiesReadOnlyInPropertyStore</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.device_props_readonly_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.id">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.id_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.id_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.open_propstore">
+<span class="sig-name descname"><span class="pre">open_propstore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">access</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StorageMode</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PropertyStore</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.open_propstore" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.open_propstore_nothrow">
+<span class="sig-name descname"><span class="pre">open_propstore_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">access</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StorageMode</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">PropertyStore</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.open_propstore_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.propstore_read">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">propstore_read</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PropertyStore</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.propstore_read" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.propstore_read_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">propstore_read_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">PropertyStore</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.propstore_read_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.propstore_readwrite">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">propstore_readwrite</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PropertyStore</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.propstore_readwrite" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.propstore_readwrite_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">propstore_readwrite_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">PropertyStore</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.propstore_readwrite_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.state">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#powccoreaudio.mmdevice.DeviceState" title="powccoreaudio.mmdevice.DeviceState"><span class="pre">DeviceState</span></a></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.state" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.state_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#powccoreaudio.mmdevice.DeviceState" title="powccoreaudio.mmdevice.DeviceState"><span class="pre">DeviceState</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.state_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDevice.wrapped_obj">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wrapped_obj</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">c_void_p</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDevice.wrapped_obj" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceCollection">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">MMDeviceCollection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">o</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceCollection" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>マルチメディアデバイスコレクション。IMMDeviceCollectionインターフェイスのラッパーです。</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceCollection.getat">
+<span class="sig-name descname"><span class="pre">getat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#powccoreaudio.mmdevice.MMDevice" title="powccoreaudio.mmdevice.MMDevice"><span class="pre">MMDevice</span></a></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceCollection.getat" title="Link to this definition"></a></dt>
+<dd><p>インデックスを指定して項目を取得します。
+キーが整数固定なので__getitem__より高速です。</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceCollection.items">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#powccoreaudio.mmdevice.MMDevice" title="powccoreaudio.mmdevice.MMDevice"><span class="pre">MMDevice</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceCollection.items" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceCollection.wrapped_obj">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wrapped_obj</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">c_void_p</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceCollection.wrapped_obj" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">MMDeviceEnumerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">o</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>マルチメディアデバイスの列挙機能。IMMDeviceEnumeratorインターフェイスのラッパーです。</p>
+<p class="rubric">サンプル</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">device_enum</span> <span class="o">=</span> <span class="n">MMDeviceEnumerator</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.CLSID_MMDEVICEENUMERATOR">
+<span class="sig-name descname"><span class="pre">CLSID_MMDEVICEENUMERATOR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">GUID(&quot;{BCDE0395-E52F-467C-8E3D-C4579291692E}&quot;)</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.CLSID_MMDEVICEENUMERATOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.create">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#powccoreaudio.mmdevice.MMDeviceEnumerator" title="powccoreaudio.mmdevice.MMDeviceEnumerator"><span class="pre">MMDeviceEnumerator</span></a></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.create" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.get_default_audioendpoint">
+<span class="sig-name descname"><span class="pre">get_default_audioendpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.DataFlow" title="powccoreaudio.mmdevice.DataFlow"><span class="pre">DataFlow</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.Role" title="powccoreaudio.mmdevice.Role"><span class="pre">Role</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#powccoreaudio.mmdevice.MMDevice" title="powccoreaudio.mmdevice.MMDevice"><span class="pre">MMDevice</span></a></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.get_default_audioendpoint" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.get_default_audioendpoint_nothrow">
+<span class="sig-name descname"><span class="pre">get_default_audioendpoint_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.DataFlow" title="powccoreaudio.mmdevice.DataFlow"><span class="pre">DataFlow</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.Role" title="powccoreaudio.mmdevice.Role"><span class="pre">Role</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#powccoreaudio.mmdevice.MMDevice" title="powccoreaudio.mmdevice.MMDevice"><span class="pre">MMDevice</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.get_default_audioendpoint_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.get_device">
+<span class="sig-name descname"><span class="pre">get_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#powccoreaudio.mmdevice.MMDevice" title="powccoreaudio.mmdevice.MMDevice"><span class="pre">MMDevice</span></a></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.get_device" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.get_device_nothrow">
+<span class="sig-name descname"><span class="pre">get_device_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#powccoreaudio.mmdevice.MMDevice" title="powccoreaudio.mmdevice.MMDevice"><span class="pre">MMDevice</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.get_device_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.get_enum_audioendpoints">
+<span class="sig-name descname"><span class="pre">get_enum_audioendpoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.DataFlow" title="powccoreaudio.mmdevice.DataFlow"><span class="pre">DataFlow</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.Role" title="powccoreaudio.mmdevice.Role"><span class="pre">Role</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#powccoreaudio.mmdevice.MMDeviceCollection" title="powccoreaudio.mmdevice.MMDeviceCollection"><span class="pre">MMDeviceCollection</span></a></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.get_enum_audioendpoints" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.get_enum_audioendpoints_nothrow">
+<span class="sig-name descname"><span class="pre">get_enum_audioendpoints_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.DataFlow" title="powccoreaudio.mmdevice.DataFlow"><span class="pre">DataFlow</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.Role" title="powccoreaudio.mmdevice.Role"><span class="pre">Role</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#powccoreaudio.mmdevice.MMDeviceCollection" title="powccoreaudio.mmdevice.MMDeviceCollection"><span class="pre">MMDeviceCollection</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.get_enum_audioendpoints_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.get_microphone">
+<span class="sig-name descname"><span class="pre">get_microphone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#powccoreaudio.mmdevice.MMDevice" title="powccoreaudio.mmdevice.MMDevice"><span class="pre">MMDevice</span></a></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.get_microphone" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.get_speaker">
+<span class="sig-name descname"><span class="pre">get_speaker</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#powccoreaudio.mmdevice.MMDevice" title="powccoreaudio.mmdevice.MMDevice"><span class="pre">MMDevice</span></a></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.get_speaker" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.microphones">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">microphones</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#powccoreaudio.mmdevice.MMDeviceCollection" title="powccoreaudio.mmdevice.MMDeviceCollection"><span class="pre">MMDeviceCollection</span></a></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.microphones" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.register_endpoint_notification_callback">
+<span class="sig-name descname"><span class="pre">register_endpoint_notification_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.MMNotificationClientBase" title="powccoreaudio.mmdevice.MMNotificationClientBase"><span class="pre">MMNotificationClientBase</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#powccoreaudio.mmdevice.MMNotificationClientWrapper" title="powccoreaudio.mmdevice.MMNotificationClientWrapper"><span class="pre">MMNotificationClientWrapper</span></a></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.register_endpoint_notification_callback" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.register_endpoint_notification_callback_nothrow">
+<span class="sig-name descname"><span class="pre">register_endpoint_notification_callback_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.MMNotificationClientBase" title="powccoreaudio.mmdevice.MMNotificationClientBase"><span class="pre">MMNotificationClientBase</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#powccoreaudio.mmdevice.MMNotificationClientWrapper" title="powccoreaudio.mmdevice.MMNotificationClientWrapper"><span class="pre">MMNotificationClientWrapper</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.register_endpoint_notification_callback_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.speakers">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">speakers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#powccoreaudio.mmdevice.MMDeviceCollection" title="powccoreaudio.mmdevice.MMDeviceCollection"><span class="pre">MMDeviceCollection</span></a></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.speakers" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.unregister_endpoint_notification_callback">
+<span class="sig-name descname"><span class="pre">unregister_endpoint_notification_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wrapper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.MMNotificationClientWrapper" title="powccoreaudio.mmdevice.MMNotificationClientWrapper"><span class="pre">MMNotificationClientWrapper</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.unregister_endpoint_notification_callback" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.unregister_endpoint_notification_callback_nothrow">
+<span class="sig-name descname"><span class="pre">unregister_endpoint_notification_callback_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wrapper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.MMNotificationClientWrapper" title="powccoreaudio.mmdevice.MMNotificationClientWrapper"><span class="pre">MMNotificationClientWrapper</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.unregister_endpoint_notification_callback_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMDeviceEnumerator.wrapped_obj">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wrapped_obj</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">c_void_p</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMDeviceEnumerator.wrapped_obj" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMEndpoint">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">MMEndpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">o</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.mmdevice.MMEndpoint" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>マルチメディアエンドポイント。IMMEndpointインターフェイスのラッパーです。</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMEndpoint.dataflow_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dataflow_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#powccoreaudio.mmdevice.DataFlow" title="powccoreaudio.mmdevice.DataFlow"><span class="pre">DataFlow</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMEndpoint.dataflow_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMEndpoint.wrapped_obj">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wrapped_obj</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">c_void_p</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.MMEndpoint.wrapped_obj" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientBase">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">MMNotificationClientBase</span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientBase" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientBase.defaultdevice_changed">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">defaultdevice_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.DataFlow" title="powccoreaudio.mmdevice.DataFlow"><span class="pre">DataFlow</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.Role" title="powccoreaudio.mmdevice.Role"><span class="pre">Role</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultdeviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientBase.defaultdevice_changed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientBase.device_added">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">device_added</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientBase.device_added" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientBase.device_removed">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">device_removed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientBase.device_removed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientBase.device_state_changed">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">device_state_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newstate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientBase.device_state_changed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientBase.propvalue_changed">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">propvalue_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PropVariant</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientBase.propvalue_changed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientForCall">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">MMNotificationClientForCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">OrderedDict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientForCall" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="#powccoreaudio.mmdevice.MMNotificationClientBase" title="powccoreaudio.mmdevice.MMNotificationClientBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">MMNotificationClientBase</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientForCall.defaultdevice_changed">
+<span class="sig-name descname"><span class="pre">defaultdevice_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.DataFlow" title="powccoreaudio.mmdevice.DataFlow"><span class="pre">DataFlow</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#powccoreaudio.mmdevice.Role" title="powccoreaudio.mmdevice.Role"><span class="pre">Role</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultdeviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientForCall.defaultdevice_changed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientForCall.device_added">
+<span class="sig-name descname"><span class="pre">device_added</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientForCall.device_added" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientForCall.device_removed">
+<span class="sig-name descname"><span class="pre">device_removed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientForCall.device_removed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientForCall.device_state_changed">
+<span class="sig-name descname"><span class="pre">device_state_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newstate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientForCall.device_state_changed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientForCall.propvalue_changed">
+<span class="sig-name descname"><span class="pre">propvalue_changed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PropVariant</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientForCall.propvalue_changed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientForPrint">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">MMNotificationClientForPrint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TextIO</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientForPrint" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="#powccoreaudio.mmdevice.MMNotificationClientForCall" title="powccoreaudio.mmdevice.MMNotificationClientForCall"><code class="xref py py-class docutils literal notranslate"><span class="pre">MMNotificationClientForCall</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientWrapper">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">MMNotificationClientWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientWrapper" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">COMObject</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientWrapper.IMMNotificationClient_OnDefaultDeviceChanged">
+<span class="sig-name descname"><span class="pre">IMMNotificationClient_OnDefaultDeviceChanged</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">this</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultdeviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientWrapper.IMMNotificationClient_OnDefaultDeviceChanged" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientWrapper.IMMNotificationClient_OnDeviceAdded">
+<span class="sig-name descname"><span class="pre">IMMNotificationClient_OnDeviceAdded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">this</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientWrapper.IMMNotificationClient_OnDeviceAdded" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientWrapper.IMMNotificationClient_OnDeviceRemoved">
+<span class="sig-name descname"><span class="pre">IMMNotificationClient_OnDeviceRemoved</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">this</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientWrapper.IMMNotificationClient_OnDeviceRemoved" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientWrapper.IMMNotificationClient_OnDeviceStateChanged">
+<span class="sig-name descname"><span class="pre">IMMNotificationClient_OnDeviceStateChanged</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">this</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newstate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientWrapper.IMMNotificationClient_OnDeviceStateChanged" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.MMNotificationClientWrapper.IMMNotificationClient_OnPropertyValueChanged">
+<span class="sig-name descname"><span class="pre">IMMNotificationClient_OnPropertyValueChanged</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">this</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deviceid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PropVariant</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#powccoreaudio.mmdevice.MMNotificationClientWrapper.IMMNotificationClient_OnPropertyValueChanged" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.Role">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.mmdevice.</span></span><span class="sig-name descname"><span class="pre">Role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.mmdevice.Role" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>ERole</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.Role.Communications">
+<span class="sig-name descname"><span class="pre">Communications</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.Role.Communications" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.Role.Console">
+<span class="sig-name descname"><span class="pre">Console</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.Role.Console" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.mmdevice.Role.Multimedia">
+<span class="sig-name descname"><span class="pre">Multimedia</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#powccoreaudio.mmdevice.Role.Multimedia" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="powccoreaudio.endpointvolume.html" class="btn btn-neutral float-left" title="powccoreaudio.endpointvolume module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, poti-san.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

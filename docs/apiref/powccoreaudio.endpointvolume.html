@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ja" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>powccoreaudio.endpointvolume module &mdash; powccoreaudio  ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=c033477b"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=4755f45a"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="powccoreaudio.mmdevice module" href="powccoreaudio.mmdevice.html" />
+    <link rel="prev" title="powccoreaudio.devicepropsinstore module" href="powccoreaudio.devicepropsinstore.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            powccoreaudio
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="powccoreaudio.html">powccoreaudio package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="powccoreaudio.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="powccoreaudio.devicepropsinstore.html">powccoreaudio.devicepropsinstore module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">powccoreaudio.endpointvolume module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.endpointvolume.AudioEndpointVolume"><code class="docutils literal notranslate"><span class="pre">AudioEndpointVolume</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.endpointvolume.AudioMeterInformation"><code class="docutils literal notranslate"><span class="pre">AudioMeterInformation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.endpointvolume.AudioVolumeNotificationData"><code class="docutils literal notranslate"><span class="pre">AudioVolumeNotificationData</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.endpointvolume.ENDPOINT_HARDWARE_SUPPORT"><code class="docutils literal notranslate"><span class="pre">ENDPOINT_HARDWARE_SUPPORT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume"><code class="docutils literal notranslate"><span class="pre">IAudioEndpointVolume</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.endpointvolume.IAudioEndpointVolumeCallback"><code class="docutils literal notranslate"><span class="pre">IAudioEndpointVolumeCallback</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.endpointvolume.IAudioEndpointVolumeEx"><code class="docutils literal notranslate"><span class="pre">IAudioEndpointVolumeEx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#powccoreaudio.endpointvolume.IAudioMeterInformation"><code class="docutils literal notranslate"><span class="pre">IAudioMeterInformation</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="powccoreaudio.mmdevice.html">powccoreaudio.mmdevice module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">索引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">モジュール索引</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">powccoreaudio</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="powccoreaudio.html">powccoreaudio package</a></li>
+      <li class="breadcrumb-item active">powccoreaudio.endpointvolume module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/apiref/powccoreaudio.endpointvolume.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-powccoreaudio.endpointvolume">
+<span id="powccoreaudio-endpointvolume-module"></span><h1>powccoreaudio.endpointvolume module<a class="headerlink" href="#module-powccoreaudio.endpointvolume" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.endpointvolume.</span></span><span class="sig-name descname"><span class="pre">AudioEndpointVolume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">o</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eventcontext_guid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GUID</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>オーディオエンドポイント。IAudioEndpointVolumeインターフェイスのラッパーです。</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeRange">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VolumeRange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">increment_db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeRange" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeRange.increment_db">
+<span class="sig-name descname"><span class="pre">increment_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeRange.increment_db" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeRange.max_db">
+<span class="sig-name descname"><span class="pre">max_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeRange.max_db" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeRange.min_db">
+<span class="sig-name descname"><span class="pre">min_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeRange.min_db" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeStepInfo">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VolumeStepInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeStepInfo" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeStepInfo.step">
+<span class="sig-name descname"><span class="pre">step</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeStepInfo.step" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeStepInfo.step_count">
+<span class="sig-name descname"><span class="pre">step_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeStepInfo.step_count" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.channel_count">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">channel_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.channel_count" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.channel_count_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">channel_count_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.channel_count_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.eventcontext_guid">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">eventcontext_guid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">GUID</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.eventcontext_guid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.get_channel_volume_level_nothrow">
+<span class="sig-name descname"><span class="pre">get_channel_volume_level_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.get_channel_volume_level_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.get_channel_volume_level_scalar_nothrow">
+<span class="sig-name descname"><span class="pre">get_channel_volume_level_scalar_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.get_channel_volume_level_scalar_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.hardware_support">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hardware_support</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.hardware_support" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.hardware_support_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hardware_support_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.hardware_support_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.master_volume_level">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">master_volume_level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.master_volume_level" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.master_volume_level_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">master_volume_level_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.master_volume_level_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.master_volume_level_scalar">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">master_volume_level_scalar</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.master_volume_level_scalar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.master_volume_level_scalar_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">master_volume_level_scalar_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.master_volume_level_scalar_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.mute">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mute</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.mute" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.mute_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mute_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.mute_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.set_channel_volume_level">
+<span class="sig-name descname"><span class="pre">set_channel_volume_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.set_channel_volume_level" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.set_channel_volume_level_nothrow">
+<span class="sig-name descname"><span class="pre">set_channel_volume_level_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.set_channel_volume_level_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.set_channel_volume_level_scalar">
+<span class="sig-name descname"><span class="pre">set_channel_volume_level_scalar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.set_channel_volume_level_scalar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.set_channel_volume_level_scalar_nothrow">
+<span class="sig-name descname"><span class="pre">set_channel_volume_level_scalar_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.set_channel_volume_level_scalar_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.set_master_volume_level_nothrow">
+<span class="sig-name descname"><span class="pre">set_master_volume_level_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.set_master_volume_level_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.set_master_volume_level_scalar_nothrow">
+<span class="sig-name descname"><span class="pre">set_master_volume_level_scalar_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.set_master_volume_level_scalar_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.set_mute_nothrow">
+<span class="sig-name descname"><span class="pre">set_mute_nothrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.set_mute_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.volume_range">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">volume_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeRange" title="powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeRange"><span class="pre">VolumeRange</span></a></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.volume_range" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.volume_range_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">volume_range_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeRange" title="powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeRange"><span class="pre">VolumeRange</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.volume_range_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.volume_step_info">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">volume_step_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeStepInfo" title="powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeStepInfo"><span class="pre">VolumeStepInfo</span></a></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.volume_step_info" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.volume_step_info_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">volume_step_info_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeStepInfo" title="powccoreaudio.endpointvolume.AudioEndpointVolume.VolumeStepInfo"><span class="pre">VolumeStepInfo</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.volume_step_info_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.volume_stepdown">
+<span class="sig-name descname"><span class="pre">volume_stepdown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.volume_stepdown" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.volume_stepdown_nothrow">
+<span class="sig-name descname"><span class="pre">volume_stepdown_nothrow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.volume_stepdown_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.volume_stepup">
+<span class="sig-name descname"><span class="pre">volume_stepup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.volume_stepup" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.volume_stepup_nothrow">
+<span class="sig-name descname"><span class="pre">volume_stepup_nothrow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.volume_stepup_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioEndpointVolume.wrapped_obj">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wrapped_obj</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">c_void_p</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioEndpointVolume.wrapped_obj" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioMeterInformation">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.endpointvolume.</span></span><span class="sig-name descname"><span class="pre">AudioMeterInformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">o</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioMeterInformation" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>聴覚メーター情報。IAudioMeterInformationインターフェイスのラッパーです。</p>
+<p>作成にはMMDeviceを使用します。</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioMeterInformation.channelspeakvalues">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">channelspeakvalues</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioMeterInformation.channelspeakvalues" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioMeterInformation.channelspeakvalues_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">channelspeakvalues_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioMeterInformation.channelspeakvalues_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioMeterInformation.hardwaresupport">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hardwaresupport</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#powccoreaudio.endpointvolume.ENDPOINT_HARDWARE_SUPPORT" title="powccoreaudio.endpointvolume.ENDPOINT_HARDWARE_SUPPORT"><span class="pre">ENDPOINT_HARDWARE_SUPPORT</span></a></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioMeterInformation.hardwaresupport" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioMeterInformation.hardwaresupport_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hardwaresupport_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#powccoreaudio.endpointvolume.ENDPOINT_HARDWARE_SUPPORT" title="powccoreaudio.endpointvolume.ENDPOINT_HARDWARE_SUPPORT"><span class="pre">ENDPOINT_HARDWARE_SUPPORT</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioMeterInformation.hardwaresupport_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioMeterInformation.meteringchannelcount">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">meteringchannelcount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioMeterInformation.meteringchannelcount" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioMeterInformation.meteringchannelcount_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">meteringchannelcount_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioMeterInformation.meteringchannelcount_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioMeterInformation.peakvalue">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">peakvalue</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioMeterInformation.peakvalue" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioMeterInformation.peakvalue_nothrow">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">peakvalue_nothrow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ComResult</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioMeterInformation.peakvalue_nothrow" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioMeterInformation.wrapped_obj">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wrapped_obj</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">c_void_p</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioMeterInformation.wrapped_obj" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioVolumeNotificationData">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.endpointvolume.</span></span><span class="sig-name descname"><span class="pre">AudioVolumeNotificationData</span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioVolumeNotificationData" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">Structure</span></code></p>
+<p>AUDIO_VOLUME_NOTIFICATION_DATA</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioVolumeNotificationData.channel_volumes0">
+<span class="sig-name descname"><span class="pre">channel_volumes0</span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioVolumeNotificationData.channel_volumes0" title="Link to this definition"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioVolumeNotificationData.channels">
+<span class="sig-name descname"><span class="pre">channels</span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioVolumeNotificationData.channels" title="Link to this definition"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioVolumeNotificationData.event_context_guid">
+<span class="sig-name descname"><span class="pre">event_context_guid</span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioVolumeNotificationData.event_context_guid" title="Link to this definition"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioVolumeNotificationData.master_volume">
+<span class="sig-name descname"><span class="pre">master_volume</span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioVolumeNotificationData.master_volume" title="Link to this definition"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.AudioVolumeNotificationData.muted">
+<span class="sig-name descname"><span class="pre">muted</span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.AudioVolumeNotificationData.muted" title="Link to this definition"></a></dt>
+<dd><p>Structure/Union member</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.ENDPOINT_HARDWARE_SUPPORT">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.endpointvolume.</span></span><span class="sig-name descname"><span class="pre">ENDPOINT_HARDWARE_SUPPORT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#powccoreaudio.endpointvolume.ENDPOINT_HARDWARE_SUPPORT" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntFlag</span></code></p>
+<p>ENDPOINT_HARDWARE_SUPPORT_*定数</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.ENDPOINT_HARDWARE_SUPPORT.METER">
+<span class="sig-name descname"><span class="pre">METER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.ENDPOINT_HARDWARE_SUPPORT.METER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.ENDPOINT_HARDWARE_SUPPORT.MUTE">
+<span class="sig-name descname"><span class="pre">MUTE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.ENDPOINT_HARDWARE_SUPPORT.MUTE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.ENDPOINT_HARDWARE_SUPPORT.VOLUME">
+<span class="sig-name descname"><span class="pre">VOLUME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.ENDPOINT_HARDWARE_SUPPORT.VOLUME" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.endpointvolume.</span></span><span class="sig-name descname"><span class="pre">IAudioEndpointVolume</span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IUnknown</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.GetChannelCount">
+<span class="sig-name descname"><span class="pre">GetChannelCount</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">5:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.GetChannelCount" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.GetChannelVolumeLevel">
+<span class="sig-name descname"><span class="pre">GetChannelVolumeLevel</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">12:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.GetChannelVolumeLevel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.GetChannelVolumeLevelScalar">
+<span class="sig-name descname"><span class="pre">GetChannelVolumeLevelScalar</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">13:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.GetChannelVolumeLevelScalar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.GetMasterVolumeLevel">
+<span class="sig-name descname"><span class="pre">GetMasterVolumeLevel</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">8:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.GetMasterVolumeLevel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.GetMasterVolumeLevelScalar">
+<span class="sig-name descname"><span class="pre">GetMasterVolumeLevelScalar</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">9:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.GetMasterVolumeLevelScalar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.GetMute">
+<span class="sig-name descname"><span class="pre">GetMute</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">15:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.GetMute" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.GetVolumeRange">
+<span class="sig-name descname"><span class="pre">GetVolumeRange</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">20:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.GetVolumeRange" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.GetVolumeStepInfo">
+<span class="sig-name descname"><span class="pre">GetVolumeStepInfo</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">16:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.GetVolumeStepInfo" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.QueryHardwareSupport">
+<span class="sig-name descname"><span class="pre">QueryHardwareSupport</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">19:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.QueryHardwareSupport" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.RegisterControlChangeNotify">
+<span class="sig-name descname"><span class="pre">RegisterControlChangeNotify</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">3:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.RegisterControlChangeNotify" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.SetChannelVolumeLevel">
+<span class="sig-name descname"><span class="pre">SetChannelVolumeLevel</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">10:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.SetChannelVolumeLevel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.SetChannelVolumeLevelScalar">
+<span class="sig-name descname"><span class="pre">SetChannelVolumeLevelScalar</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">11:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.SetChannelVolumeLevelScalar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.SetMasterVolumeLevel">
+<span class="sig-name descname"><span class="pre">SetMasterVolumeLevel</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">6:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.SetMasterVolumeLevel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.SetMasterVolumeLevelScalar">
+<span class="sig-name descname"><span class="pre">SetMasterVolumeLevelScalar</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">7:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.SetMasterVolumeLevelScalar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.SetMute">
+<span class="sig-name descname"><span class="pre">SetMute</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">14:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.SetMute" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.UnregisterControlChangeNotify">
+<span class="sig-name descname"><span class="pre">UnregisterControlChangeNotify</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">4:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.UnregisterControlChangeNotify" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.VolumeStepDown">
+<span class="sig-name descname"><span class="pre">VolumeStepDown</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">18:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.VolumeStepDown" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolume.VolumeStepUp">
+<span class="sig-name descname"><span class="pre">VolumeStepUp</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">17:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume.VolumeStepUp" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolumeCallback">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.endpointvolume.</span></span><span class="sig-name descname"><span class="pre">IAudioEndpointVolumeCallback</span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolumeCallback" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IUnknown</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolumeCallback.OnNotify">
+<span class="sig-name descname"><span class="pre">OnNotify</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">3:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolumeCallback.OnNotify" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolumeEx">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.endpointvolume.</span></span><span class="sig-name descname"><span class="pre">IAudioEndpointVolumeEx</span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolumeEx" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <a class="reference internal" href="#powccoreaudio.endpointvolume.IAudioEndpointVolume" title="powccoreaudio.endpointvolume.IAudioEndpointVolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">IAudioEndpointVolume</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioEndpointVolumeEx.GetVolumeRangeChannel">
+<span class="sig-name descname"><span class="pre">GetVolumeRangeChannel</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">21:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioEndpointVolumeEx.GetVolumeRangeChannel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioMeterInformation">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">powccoreaudio.endpointvolume.</span></span><span class="sig-name descname"><span class="pre">IAudioMeterInformation</span></span><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioMeterInformation" title="Link to this definition"></a></dt>
+<dd><p>ベースクラス: <code class="xref py py-class docutils literal notranslate"><span class="pre">IUnknown</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioMeterInformation.GetChannelsPeakValues">
+<span class="sig-name descname"><span class="pre">GetChannelsPeakValues</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">5:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioMeterInformation.GetChannelsPeakValues" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioMeterInformation.GetMeteringChannelCount">
+<span class="sig-name descname"><span class="pre">GetMeteringChannelCount</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">4:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioMeterInformation.GetMeteringChannelCount" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioMeterInformation.GetPeakValue">
+<span class="sig-name descname"><span class="pre">GetPeakValue</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">3:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioMeterInformation.GetPeakValue" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="powccoreaudio.endpointvolume.IAudioMeterInformation.QueryHardwareSupport">
+<span class="sig-name descname"><span class="pre">QueryHardwareSupport</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;COM</span> <span class="pre">method</span> <span class="pre">offset</span> <span class="pre">6:</span> <span class="pre">WinFunctionType&gt;</span></em><a class="headerlink" href="#powccoreaudio.endpointvolume.IAudioMeterInformation.QueryHardwareSupport" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="powccoreaudio.devicepropsinstore.html" class="btn btn-neutral float-left" title="powccoreaudio.devicepropsinstore module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="powccoreaudio.mmdevice.html" class="btn btn-neutral float-right" title="powccoreaudio.mmdevice module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, poti-san.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
